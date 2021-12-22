@@ -8,6 +8,10 @@
 #include <math.h>
 #include <limits>
 #include <chrono>
+#include<set>
+#include<map>
+
+
 
 class Search
 {
@@ -15,7 +19,9 @@ class Search
         Search();
         ~Search(void);
         SearchResult startSearch(ILogger *Logger, const Map &Map, const EnvironmentOptions &options);
-
+        void heuristic(Node &n, Node end, const EnvironmentOptions &options);
+        std::vector<std::pair<std::pair<int, int>, double>> Neighs(int type, Node n,const Map &map, const EnvironmentOptions &options);
+        void makePrimaryPath(Node curNode, std::map<std::pair<int, int>, Node> &m);
     protected:
         //CODE HERE
 
@@ -35,7 +41,7 @@ class Search
 
         SearchResult                    sresult; //This will store the search result
         std::list<Node>                 lppath, hppath; //
-        std::list<Node>                 Open, Close;
+        std::map<std::pair<int, int>, Node> nodes;
 
         //CODE HERE to define other members of the class
 };

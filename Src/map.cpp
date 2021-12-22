@@ -26,6 +26,10 @@ bool Map::CellIsTraversable(int i, int j) const
 {
     return (Grid[i][j] == CN_GC_NOOBS);
 }
+bool Map::CellIsTraversable(std::pair<int, int> p) const
+{
+    return (Grid[p.first][p.second] == CN_GC_NOOBS);
+}
 
 bool Map::CellIsObstacle(int i, int j) const
 {
@@ -313,12 +317,12 @@ bool Map::getMap(const char *FileName)
 
 
 std::pair<int, int> Map::getStart() const {
-    return {start_i, start_j};
+    return std::make_pair(start_i, start_j);
 }
 
 
 std::pair<int, int> Map::getEnd() const {
-    return {goal_i, goal_j};
+    return std::make_pair(goal_i, goal_j);
 }
 
 
